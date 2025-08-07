@@ -1,15 +1,24 @@
 import mongoose from 'mongoose';
 
-const UrlSchema = new mongoose.Schema({
-  longUrl: {
-    type: String,
-    required: true,
+const UrlSchema = new mongoose.Schema(
+  {
+    longUrl: {
+      type: String,
+      required: true,
+    },
+    shortUrl: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    created_at: {
+      type: Date,
+      default: Date.now,
+    },
   },
-  shortUrl: {
-    type: String,
-    required: true,
-    unique: true,
-  },
-});
+  {
+    versionKey: false, // Hide the __v field
+  }
+);
 
 export default mongoose.models.Url || mongoose.model('Url', UrlSchema);
