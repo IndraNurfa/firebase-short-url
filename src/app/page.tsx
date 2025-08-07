@@ -6,14 +6,19 @@ export default function Home() {
   const [longUrl, setLongUrl] = useState('');
   const [shortUrl, setShortUrl] = useState('');
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [copied, setCopied] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError('');
     setShortUrl('');
+    setCopied(false);
+    setLoading(true);
 
     if (!longUrl) {
       setError('Please enter a URL');
+      setLoading(false);
       return;
     }
 
@@ -34,8 +39,18 @@ export default function Home() {
         setError(data.error || 'Something went wrong');
       }
     } catch (err) {
+      setError('Something went wrong');
       console.error('Something went wrong', err);
+    } finally {
+      setLoading(false);
     }
+  };
+
+  const handleCopy = () => {
+    const urlToCopy = `${window.location.origin}/${shortUrl}`;
+    navigator.clipboard.writeText(urlToCopy);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000); // Reset after 2 seconds
   };
 
   return (
@@ -64,9 +79,10 @@ export default function Home() {
           <div>
             <button
               type="submit"
-              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-cyan-600 hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 focus:ring-offset-gray-800"
+              disabled={loading}
+              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-cyan-600 hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 focus:ring-offset-gray-800 disabled:bg-gray-500 disabled:cursor-not-allowed"
             >
-              Shorten URL
+              {loading ? 'Shortening...' : 'Shorten URL'}
             </button>
           </div>
         </form>
@@ -79,18 +95,21 @@ export default function Home() {
         )}
 
         {shortUrl && (
-          <div className="bg-gray-700 p-4 rounded-lg">
-            <p className="text-center">
-              Your shortened URL:
-              <a
-                href={`/${shortUrl}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-cyan-400 font-medium hover:text-cyan-300 ml-2"
-              >
-                {`${window.location.origin}/${shortUrl}`}
-              </a>
-            </p>
+          <div className="bg-gray-700 p-4 rounded-lg flex items-center justify-between">
+            <a
+              href={`/${shortUrl}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-cyan-400 font-medium hover:text-cyan-300 truncate"
+            >
+              {`${window.location.origin}/${shortUrl}`}
+            </a>
+            <button
+              onClick={handleCopy}
+              className="ml-4 px-3 py-1 border border-transparent text-sm font-medium rounded-md text-white bg-cyan-600 hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 focus:ring-offset-gray-800"
+            >
+              {copied ? 'Copied!' : 'Copy'}
+            </button>
           </div>
         )}
       </div>
