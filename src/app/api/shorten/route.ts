@@ -12,7 +12,7 @@ export async function POST(req: NextRequest) {
   try {
     const newUrl = await Url.create({ longUrl, shortUrl });
     return NextResponse.json({ shortUrl: newUrl.shortUrl });
-  } catch (error) {
-    return NextResponse.json({ error: 'Error creating short URL' }, { status: 500 });
+  } catch (err) {
+    return NextResponse.json({ error: err }, { status: 500 });
   }
 }

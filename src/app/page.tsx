@@ -34,7 +34,7 @@ export default function Home() {
         setError(data.error || 'Something went wrong');
       }
     } catch (err) {
-      setError('Something went wrong');
+      console.error('Something went wrong', err);
     }
   };
 

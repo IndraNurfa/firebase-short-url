@@ -8,8 +8,13 @@ async function getUrl(shortUrl: string) {
   return url;
 }
 
-export default async function ShortUrlPage({ params }: { params: { shortUrl: string } }) {
-  const url = await getUrl(params.shortUrl);
+export default async function ShortUrlPage({
+  params,
+}: {
+  params: Promise<{ shortUrl: string }>;
+}) {
+  const { shortUrl } = await params;
+  const url = await getUrl(shortUrl);
 
   if (url) {
     redirect(url.longUrl);
