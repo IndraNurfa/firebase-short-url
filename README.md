@@ -1,33 +1,64 @@
-# 🔗 URL Shortener with Next.js & Firebase
+# 🔗 Simple URL Shortener
 
-A simple and modern URL shortener application built by **Vibecoding** using **Next.js** and **Firebase**.
+A “simple” URL shortener built by **Vibecoding**, using:
 
-## 🚀 Features
+- 🧠 Gemini 2.5 Pro for AI pair programming
+- ⚙️ Next.js (TypeScript)
+- 🎨 Tailwind CSS for styling
+- 🗃️ MongoDB for storing URLs
+- ☁️ Firebase Studio for deployment and project management
 
-- 🔒 Secure short URL generation
-- 🔄 Firebase Firestore for real-time database
-- ⚡ Fast performance with Next.js
-- 📱 Responsive and minimal UI
+This project may look small, but took an emotional toll far beyond its lines of code. Built through late-night debugging, existential dread, and the quiet hum of the terminal window.
 
-## 🛠️ Tech Stack
+---
 
-- **Frontend**: Next.js (React)
-- **Backend**: Firebase (Firestore + Hosting)
-- **Auth**: (Optional) Firebase Authentication
+## 🧠 Why?
 
-## 📦 Getting Started
+> Because sometimes you just want to shorten a URL... and accidentally spiral into a coding-induced identity crisis.
 
-Clone the repo and install dependencies:
+---
+
+## 🚀 Tech Stack
+
+| Tech        | Purpose                  |
+|-------------|--------------------------|
+| Next.js     | React framework          |
+| TypeScript  | Strict typing & clarity  |
+| Tailwind CSS| Fast, utility-first UI   |
+| MongoDB     | URL storage (short ➜ long) |
+| Firebase Studio | Hosting / mgmt       |
+| Gemini 2.5 Pro | Silent AI therapist   |
+
+---
+
+## 📦 Setup Instructions
+
+1. **Clone the repo:**
 
 ```bash
 git clone https://github.com/your-username/url-shortener.git
 cd url-shortener
+```
+2. **Install dependencies:**
+
+```bash
 npm install
 ```
 
-Create a .env.local file and add your Firebase config.
+3. **Create your .env.local file:**
+```env
+MONGODB_URI=your_mongodb_connection_string
+```
 
-Run the development server:
+4. **Run the app locally:**
 ```bash
 npm run dev
 ```
+
+App will be available at http://localhost:3000
+
+⚙️ **Features**
+- 🔗 Shorten long URLs with a unique ID
+- 📜 Automatically redirects from short → long
+- 🖥️ Responsive design (Tailwind)
+- 🤖 Built under the "guidance" of Gemini 2.5 Pro (and some stupid iteration obviously)
