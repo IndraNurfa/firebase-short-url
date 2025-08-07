@@ -36,8 +36,8 @@ This project may look small, but took an emotional toll far beyond its lines of 
 1. **Clone the repo:**
 
 ```bash
-git clone https://github.com/your-username/url-shortener.git
-cd url-shortener
+git clone https://github.com/IndraNurfa/firebase-short-url.git
+cd firebase-short-url
 ```
 2. **Install dependencies:**
 
