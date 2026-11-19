@@ -11,6 +11,10 @@ const UrlSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
+    isCustom: {
+      type: Boolean,
+      default: false,
+    },
     created_at: {
       type: Date,
       default: Date.now,
@@ -20,5 +24,8 @@ const UrlSchema = new mongoose.Schema(
     versionKey: false, // Hide the __v field
   }
 );
+
+// Add index for faster lookups
+UrlSchema.index({ shortUrl: 1 });
 
 export default mongoose.models.Url || mongoose.model('Url', UrlSchema);

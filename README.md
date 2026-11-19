@@ -48,6 +48,7 @@ npm install
 3. **Create your .env.local file:**
 ```env
 MONGODB_URI=your_mongodb_connection_string
+TEMP_LINK_SECRET=a_long_random_string   # e.g. openssl rand -base64 32
 ```
 
 4. **Run the app locally:**

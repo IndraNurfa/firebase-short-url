@@ -1,26 +1,111 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/*
+  Single dark theme. Palette and scale follow the supplied Cursor design system,
+  translated from warm cream to warm charcoal. Orange is the only accent and is
+  used for the wordmark and the primary action. No shadows: depth comes from
+  hairlines and surface steps.
+*/
 
 @theme inline {
+  --font-sans: var(--font-inter), system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-mono: var(--font-jetbrains), "Fira Code", ui-monospace, monospace;
+
+  --color-canvas: var(--canvas);
+  --color-canvas-soft: var(--canvas-soft);
+  --color-surface: var(--surface);
+  --color-surface-strong: var(--surface-strong);
+  --color-hairline: var(--hairline);
+  --color-hairline-strong: var(--hairline-strong);
+  --color-ink: var(--ink);
+  --color-body: var(--body);
+  --color-dim: var(--dim);
+  --color-error: var(--error);
+  --color-success: var(--success);
+  --color-primary-active: var(--primary-active);
+  --color-on-primary: var(--on-primary);
+
+  /* Bridges for the existing shadcn files in src/components/ui */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+:root {
+  color-scheme: dark;
+
+  --canvas: #1b1a16;
+  --canvas-soft: #211f1b;
+  --surface: #27251f;
+  --surface-strong: #34322b;
+  --hairline: #38362f;
+  --hairline-strong: #4d4a40;
+  --ink: #ece9df;
+  --body: #b8b4a7;
+  --dim: #98948a;
+  --primary: #f54e00;
+  --primary-active: #d04200;
+  --on-primary: #1b1a16;
+  --error: #ff7a93;
+  --success: #3fc28f;
+
+  --background: var(--canvas);
+  --foreground: var(--ink);
+  --card: var(--surface);
+  --card-foreground: var(--ink);
+  --popover: var(--surface);
+  --popover-foreground: var(--ink);
+  --primary-foreground: var(--on-primary);
+  --secondary: var(--surface-strong);
+  --secondary-foreground: var(--ink);
+  --muted: var(--surface);
+  --muted-foreground: var(--dim);
+  --accent: var(--surface-strong);
+  --accent-foreground: var(--ink);
+  --destructive: var(--error);
+  --border: var(--hairline);
+  --input: var(--hairline-strong);
+  --ring: var(--hairline-strong);
+}
+
+@layer base {
+  html {
+    background: var(--canvas);
   }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  body {
+    background: var(--canvas);
+    color: var(--body);
+    font-family: var(--font-sans);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection {
+    background: var(--primary);
+    color: var(--on-primary);
+  }
+  :focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 2px;
+  }
 }
